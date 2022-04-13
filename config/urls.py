@@ -23,7 +23,7 @@ urlpatterns = [
     path("registrarPaciente/", PacienteView.index, name="registrar_pacientes"),
     path("buscarPaciente/<int:paciente>", PacienteView.buscarPaciente,name="bus_paciente"), # no funciona
     # verificar pantalla de abajo
-    path("registrarPesoPaciente/", TemplateView.as_view(template_name='transaccional/registrar_peso.html'), name="registrar_peso"),
+    path("registrarPesoPaciente/", TemplateView.as_view(template_name='transaccional/registrar_medidas.html'), name="registrar_peso"),
     path("historialPesoPaciente/<int:paciente>", PesoPacienteView.buscar_medidas, name="historial_peso"),
     path("historialComidaPaciente/<int:paciente>", ComidaPacienteView.buscar_comidas, name="historial_comida"),
 
