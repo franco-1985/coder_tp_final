@@ -1,5 +1,14 @@
 # TP Final Coder
 
+## Consideraciones
+
+Funcionalidades realizadas:
+ - Formulario de listado de comidas cargadas: mostrar las comidas que tiene cargada el sistema
+ - Formulario de registro de comidas: permitir registrar una comida
+ - Formulario de listado de momentos de comidas: mostrar los momentos de comidas cargados
+ - Formulario de registro de pacientes: registrar nuevos pacientes
+ - Formulario de listado de pacientes: mostrar el listado de pacientes, permitiendo editar cada registro. Tambien permite registar (falta desarrollar) y visualizar registro de comidas y medidas para cada paciente.
+
 Trabajo final del curso de coderhouse
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
