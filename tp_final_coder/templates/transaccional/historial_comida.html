@@ -1,0 +1,26 @@
+{% extends "base_v2.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <h1 color="blue"> Listado de comidas </h1>
+
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Comida</th>
+      <th scope="col">Momento</th>
+      <th scope="col">Descripcion</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for element in lista_comidas %}
+    <tr>
+      <td>{{ element.id_comida   }}</td>
+      <td>{{ element.id_momento  }}</td>
+      <td>{{ element.descripcion }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

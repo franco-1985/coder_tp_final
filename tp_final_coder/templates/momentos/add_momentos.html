@@ -1,0 +1,28 @@
+{% extends "base_v2.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      Error!
+    </div>
+  {% endif %}
+
+  <h1> Registro de momentos </h1>
+
+  <form action="#" method="POST">
+    {% csrf_token %}
+    {% if mensaje %}
+      <div class="alert alert-success" role="alert">
+        Momento registrado OK
+      </div>
+    {% endif %}
+
+    {{ form | crispy }}
+    <p>
+
+    </p>
+    <button type="submit" class="btn btn-primary">Guardar momento</button>
+
+  </form>
+{% endblock %}

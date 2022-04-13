@@ -1,0 +1,25 @@
+{% extends "base_v2.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <h1 color="blue"> Listado de momentos del dia </h1>
+
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Nombre momento</th>
+      <th scope="col">Descripcion</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for element in lista_momentos %}
+    <tr>
+      <td>{{ element.nombre }}</td>
+      <td>{{ element.descripcion }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
