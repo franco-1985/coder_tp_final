@@ -10,7 +10,7 @@
 
   <h1> Registro de momentos </h1>
 
-  <form action="#" method="POST">
+  <form action="{%url 'add_momentos' %}" method="POST">
     {% csrf_token %}
     {% if mensaje %}
       <div class="alert alert-success" role="alert">

@@ -30,7 +30,8 @@ urlpatterns = [
     # referido a comidas
     path("comida/", ComidaView.get, name="get_comidas"),
     path("momentosComida/", MomentoComidaView.get, name="get_momentos"),
-    path("addMomentosComida/", MomentoComidaView.get, name="add_momentos"),
+    path("addMomentosComida/", MomentoComidaView.post, name="add_momentos"),
+    path("registrarMomentosComida/", MomentoComidaView.index, name="registrar_momentos"),
     path("agregarComida/", ComidaView.post, name="add_comidas"),
     path("registrarComida/", ComidaView.index, name="registrar_comidas"),
 
