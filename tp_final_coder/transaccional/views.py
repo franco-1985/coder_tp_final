@@ -78,4 +78,16 @@ class PesoPacienteView(TemplateView):
         context = {'form':form, 'lista_pesos':pesos_paciente}
         return render(request, template_buscar_paciente, context=context)
 
+    def index(request):
+        template_registrar_medida = 'transaccional/registrar_medidas.html'
+        peso_paciente = FormularioPesoPaciente()
+        context = {'form': peso_paciente}
+        return render(request, template_registrar_medida, context)
 
+    def post(request):
+        template_registrar_medida = 'transaccional/registrar_medidas.html'
+        peso_paciente  = FormularioPesoPaciente(request.POST)
+        if peso_paciente.is_valid():
+            peso_paciente.save()
+            peso_paciente = FormularioPesoPaciente()
+        return render(request=request, template_name=template_registrar_medida, context={'form': peso_paciente, 'mensaje': 'OK'})

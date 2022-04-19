@@ -22,7 +22,7 @@
       <td>{{ element.correo_electronico }}</td>
       <td><a class="btn btn-warning" href="{% url 'get_paciente' element.dni %}" > Editar paciente </a></td>
       <td><a class="btn btn-primary" href="{% url 'historial_peso' element.dni %}" > Ver medidas</a></td>
-      <td><a class="btn btn-primary" href="#" > Registrar medidas</a></td>
+      <td><a class="btn btn-primary" href=" {%url 'registrar_peso' %}" > Registrar medidas</a></td>
       <td><a class="btn btn-primary" href="{% url 'historial_comida' element.dni %}" > Ver comidas</a></td>
       <td><a class="btn btn-primary" href="#" > Registrar comida</a></td>
     </tr>

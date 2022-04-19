@@ -10,7 +10,7 @@
 
   <h1> Registro de pacientes </h1>
 
-  <form action=" {%url 'add_pacientes' %}" method="POST">
+  <form action=" {%url 'add_pacientes' %} " method="POST">
     {% csrf_token %}
     {% if mensaje %}
       <div class="alert alert-success" role="alert">
