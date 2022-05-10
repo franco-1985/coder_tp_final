@@ -49,6 +49,11 @@ urlpatterns = [
     path("registro/",RegisterView.as_view(),name="registro"),
 
 
+    path("4000/",TemplateView.as_view(template_name="soporte/contruccion.html"),name="proximo"),
+
+
+
+
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

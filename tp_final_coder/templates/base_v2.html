@@ -56,8 +56,6 @@
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'registrar_pacientes' %}">Cargar nuevo paciente</a>
-                <a class="dropdown-item" href="#">Registrar visita paciente</a>
-                <a class="dropdown-item" href="#">Registrar comida paciente</a>
                 <a class="dropdown-item" href="{% url 'get_pacientes' %}">Mostrar lista de pacientes</a>
               </div>
             </div>
@@ -81,9 +79,9 @@
                 Acerca de...
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Aplicacion</a>
-                <a class="dropdown-item" href="#">Creador</a>
-                <a class="dropdown-item" href="#">Version</a>
+                <a class="dropdown-item" href="{% url 'proximo' %}">Aplicacion</a>
+                <a class="dropdown-item" href="{% url 'proximo' %}">Creador</a>
+                <a class="dropdown-item" href="{% url 'proximo' %}">Version</a>
               </div>
             </div>
           </div>
