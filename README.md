@@ -2,6 +2,17 @@
 
 ## Consideraciones
 
+Funcionalidades realizadas: (entrega parial)
+ - Se agrega formulario para registro y login de usurios. 
+ - Se agrega formulario para indicar que aun no esta realizada la funcionalidad. 
+
+Problemas:
+ - No puedo hacer generar una lista seleccionable en un formulario ya que necesito para poder registrar datos en una tabla transaccional.
+ - Se pueden agregar correctamente usuarios a la plataforma pero no se puede loguear, solo puedo hacer que el login se haga con los usuarios creados con el administrador de Django.
+ - Requiero, por favor, 7 dias para poder realizar una nueva entrega.
+ - Por falta de tiempo, no se realizo la parte de testing.
+ - Por falta de tiempo, no se realizo el video.
+
 Funcionalidades realizadas:
  - Formulario de listado de comidas cargadas: mostrar las comidas que tiene cargada el sistema
  - Formulario de registro de comidas: permitir registrar una comida
