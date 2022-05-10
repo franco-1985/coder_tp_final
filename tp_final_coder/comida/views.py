@@ -17,8 +17,8 @@ class ComidaView(TemplateView):
         template_comida = 'comida/get_comidas.html'
         # comidas = Comida.objects.all()
         comidas = ComidaView.get_listado_comidas()
-        print('get comida view')
-        print(serializers.serialize('json',ComidaView.get_listado_comidas()))
+        # print('get comida view')
+        # print(serializers.serialize('json',ComidaView.get_listado_comidas()))
         context={'lista_comidas':comidas}
         return render(request=request, template_name=template_comida, context=context)
 

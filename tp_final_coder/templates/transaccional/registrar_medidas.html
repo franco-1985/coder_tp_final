@@ -8,10 +8,11 @@
     </div>
   {% endif %}
 
-  <h1> Registrar medidas de paciente </h1>
+  <h1> Registrar medidas del paciente: {%paciente%} </h1>
 
-  <form action=" {%url 'add_medidas' %} " method="POST">
+  <form action=" {%url 'add_medidas' paciente.dni %} " method="POST">
     {% csrf_token %}
+
     {% if mensaje %}
       <div class="alert alert-success" role="alert">
         Medidas registradas OK

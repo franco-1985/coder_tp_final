@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base_v2.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+Formulario de registro de comidas de {{paciente.nombre}}
+
+
+<form action=" {%url 'registrar_comida_paciente' %} " method="POST">
+  {% csrf_token %}
+  <thead>
+  <tr>
+    <th>
+      <h2><p style="color:white;"><b>Dni paciente</b></p></h2>
+    </th>
+  </tr>
+
+  </thead>
+  <tbody>
+  <tr>
+    <td><p align="center">{{paciente.dni}}</p></td>
+
+  </tr>
+
+  </tbody>
+
+  <input type="submit" value="Cargar visita paciente">
+
+</form>
+
+{% endblock %}

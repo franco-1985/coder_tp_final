@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base_v2.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  Formulario de registro de medidas de {{paciente.nombre}}
+
+  <form action=" {%url 'add_medidas' %} " method="POST">
+    {% csrf_token %}
+    <p>
+      <p></p>
+      Dni paciente: <input type="number" name="dni_paciente" value="{{paciente.dni}}">
+    </p>
+    <p>
+      Peso paciente: <input type="number" name="peso_paciente">
+    </p>
+    <p>
+      Estatura paciente: <input type="number" name="estatura_paciente">
+    </p>
+    <p>
+      Fecha de lectura: <input type="date" name="fecha_paciente">
+    </p>
+
+    <input type="submit" value="Cargar visita paciente">
+
+  </form>
+
+{% endblock %}

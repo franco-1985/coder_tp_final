@@ -5,13 +5,15 @@
 {% if message %}
   <h1>{{ message }}</h1>
 {% endif %}
+<p>
 
+</p>
 <form action="" method="POST">
 
   {% csrf_token %}
   {{form.as_p}}
   {% if form%}
-    <input type="submit" value="Iniciar sesion"/>
+    <input type="submit" value="Registrar usuario"/>
   {% endif %}
 
 </form>

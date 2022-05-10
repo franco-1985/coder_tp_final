@@ -7,4 +7,4 @@ class Paciente(models.Model):
     correo_electronico = models.EmailField()
 
     def __str__(self):
-        return str(self.dni) + ' - ' + self.nombre + ' - ' + str(self.fecha_nacimiento)
+        return self.nombre

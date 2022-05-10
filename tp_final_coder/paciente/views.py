@@ -29,14 +29,14 @@ class PacienteView(TemplateView):
     def edit(request, paciente):
         template_paciente = 'pacientes/get_paciente.html'
         res_paciente = Paciente.objects.filter(dni=paciente).first()
-        print(f'---> edit - {res_paciente.fecha_nacimiento}')
+        # print(f'---> edit - {res_paciente.fecha_nacimiento}')
         form = FormularioPaciente(instance=res_paciente)
         context = {'form': form, 'paciente': res_paciente}
         return render(request, template_paciente, context)
 
     def actualizar(request, paciente):
         res_paciente = Paciente.objects.get(dni=paciente)
-        print(f'---> actualizar - {res_paciente.fecha_nacimiento}')
+        # print(f'---> actualizar - {res_paciente.fecha_nacimiento}')
         form = FormularioPaciente(request.POST, instance=res_paciente)
         if form.is_valid():
             form.save()
@@ -50,4 +50,7 @@ class PacienteView(TemplateView):
         context = {'lista_pacientes': pacientes}
         return render(request=request, template_name=template_paciente, context=context)
 
+    def getPaciente(dni):
+        res = Paciente.objects.filter(dni=dni).first()
+        return res
 

@@ -13,7 +13,10 @@ from tp_final_coder.momento_comida.views import MomentoComidaView
 from tp_final_coder.transaccional.views import ComidaPacienteView
 from tp_final_coder.transaccional.views import PesoPacienteView
 
+from tp_final_coder.login.views import LoginView, RegisterView
+
 urlpatterns = [
+    path("admin/", admin.site.urls),
     path("", TemplateView.as_view(template_name="base_v2.html"), name="home"),
     # referido a pacientes
     path("pacientes/", PacienteView.get, name="get_pacientes"),
@@ -23,10 +26,16 @@ urlpatterns = [
     path("registrarPaciente/", PacienteView.index, name="registrar_pacientes"),
     path("buscarPaciente/<int:paciente>", PacienteView.buscarPaciente,name="bus_paciente"), # no funciona
     # verificar pantalla de abajo
-    path("registrarPesoPaciente/", PesoPacienteView.index , name="registrar_peso"),
-    path("addPesoPaciente/", PesoPacienteView.post, name="add_medidas"),
-    path("historialPesoPaciente/<int:paciente>", PesoPacienteView.buscar_medidas, name="historial_peso"),
+    path("registrarPesoPaciente/<int:paciente>", PesoPacienteView.index , name="registrar_medidas"),
+    path("addMedidaPaciente/", PesoPacienteView.post, name="add_medidas"),
+    # path("addMedidaPaciente/<int:paciente>", PesoPacienteView.post, name="add_medidas"), # url vieja que andaba a media
+    path("historialPesoPaciente/<int:paciente>", PesoPacienteView.buscar_medidas, name="historial_medidas"),
     path("historialComidaPaciente/<int:paciente>", ComidaPacienteView.buscar_comidas, name="historial_comida"),
+    path("registrarComidaPaciente/<int:paciente>", ComidaPacienteView.registrar_comida_paciente, name="registrar_comida_paciente"),
+
+    #REPETIR ESTO PARA REGISTRAR LA COMIDA, PERO TENER EN CUENTA LA ANTERIOR.
+    #path("registrarPesoPaciente/<int:paciente>", PesoPacienteView.index, name="registrar_medidas"),
+    #path("addMedidaPaciente/", PesoPacienteView.post, name="add_medidas"),
 
     # referido a comidas
     path("comida/", ComidaView.get, name="get_comidas"),
@@ -35,6 +44,10 @@ urlpatterns = [
     path("registrarMomentosComida/", MomentoComidaView.index, name="registrar_momentos"),
     path("agregarComida/", ComidaView.post, name="add_comidas"),
     path("registrarComida/", ComidaView.index, name="registrar_comidas"),
+
+    path("login/",LoginView.as_view(),name="login"),
+    path("registro/",RegisterView.as_view(),name="registro"),
+
 
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

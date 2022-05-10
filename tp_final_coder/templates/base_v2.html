@@ -56,12 +56,38 @@
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'registrar_pacientes' %}">Cargar nuevo paciente</a>
-                <a class="dropdown-item" href="{% url 'registrar_peso' %}">Registrar visita paciente</a>
+                <a class="dropdown-item" href="#">Registrar visita paciente</a>
                 <a class="dropdown-item" href="#">Registrar comida paciente</a>
                 <a class="dropdown-item" href="{% url 'get_pacientes' %}">Mostrar lista de pacientes</a>
               </div>
             </div>
           </div>
+
+          <div class="container">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown">
+                Acceso
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'registro' %}">Registro</a>
+                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown">
+                Acerca de...
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Aplicacion</a>
+                <a class="dropdown-item" href="#">Creador</a>
+                <a class="dropdown-item" href="#">Version</a>
+              </div>
+            </div>
+          </div>
+
         </ul>
 
       </div>

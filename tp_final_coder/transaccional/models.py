@@ -27,3 +27,4 @@ class PesoXPaciente(models.Model):
 
     def __str__(self):
         return 'registo de peso por paciente'
+

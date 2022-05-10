@@ -7,10 +7,13 @@ from django.core import serializers
 
 from tp_final_coder.transaccional.models import ComidaXPaciente
 from tp_final_coder.transaccional.models import PesoXPaciente
+from tp_final_coder.paciente.models import Paciente
+
 from tp_final_coder.transaccional.forms import FormularioPesoPaciente
 from tp_final_coder.transaccional.forms import FormularioComidaPaciente
 
 from tp_final_coder.comida.views import ComidaView
+from tp_final_coder.paciente.views import PacienteView
 
 class ComidaPacienteView(TemplateView):
 
@@ -26,7 +29,7 @@ class ComidaPacienteView(TemplateView):
         template_buscar_paciente = 'transaccional/historial_comida.html'
         # comida_paciente = ComidaXPaciente.objects.filter(dni=paciente)
         comida_paciente = ComidaXPaciente.objects.filter(dni=paciente).select_related('id_comida', 'id_momento')
-        print(comida_paciente.query)
+        # print(comida_paciente.query)
         #comida_paciente = PesoXPaciente.objects.filter(dni=paciente,id_comida=comida, id_momento=momento )
         form = FormularioComidaPaciente()
         #lista = list(comida_paciente)
@@ -34,8 +37,17 @@ class ComidaPacienteView(TemplateView):
         context = {'form':form, 'lista_comidas':comida_paciente}
         return render(request, template_buscar_paciente, context=context)
 
-    def mostrar_lista(lista):
+    def registrar_comida_paciente(request, paciente=None):
+        template_registrar_comida = 'transaccional/reg_comidas.html'
+        if request.method == 'POST':
+            comida_paciente= ComidaXPaciente(dni=request.POST['dni_paciente'])
+            comida_paciente.save()
+            return render(request=request, template_name='base_v2.html')
+        return render(request=request, template_name=template_registrar_comida)
 
+            # form = FormularioComidaPaciente()
+
+    def mostrar_lista_(lista):
         txt = serializers.serialize('json',ComidaView.get_listado_comidas())
         jtext= json.loads(txt)
         tupla_comida = []
@@ -54,40 +66,67 @@ class ComidaPacienteView(TemplateView):
             if item_id_comida.id_comida == tupla_comida[i][0]:
                 print(tupla_comida[i][1])
 
-
-
         # print('segundo for')
         # for item in tupla_comida:
         #     print(f'{item[0]} - {item[1]}')
 
 class PesoPacienteView(TemplateView):
 
-
     def get(request, status=None):
-        template_peso_paciente = 'transaccional/historial_peso.html'
+        template_peso_paciente = 'transaccional/historial_medidas.html'
         peso_paciente = PesoXPaciente.objects.all()
         context={'lista_peso_paciente':peso_paciente}
         return render(request=request, template_name=template_peso_paciente, context=context)
 
 
     def buscar_medidas(request, paciente):
-        print('buscar medidas')
-        template_buscar_paciente = 'transaccional/historial_peso.html'
-        pesos_paciente = PesoXPaciente.objects.filter(dni=paciente)
+        # print('buscar medidas')
+        template_buscar_paciente = 'transaccional/historial_medidas.html'
+        medidas_paciente = PesoXPaciente.objects.filter(dni=paciente)
         form = FormularioPesoPaciente()
-        context = {'form':form, 'lista_pesos':pesos_paciente}
+
+        res_paciente = PacienteView.getPaciente(dni=paciente)
+
+        # res_paciente = Paciente.objects.filter(dni=paciente).first()
+
+        # context = {'form':form, 'lista_medidas':medidas_paciente}
+        context = {'form':form, 'lista_medidas':medidas_paciente,'paciente': res_paciente}
+
         return render(request, template_buscar_paciente, context=context)
 
-    def index(request):
-        template_registrar_medida = 'transaccional/registrar_medidas.html'
+    def index(request, paciente):
+        template_registrar_medida = 'transaccional/reg_medidas.html'
         peso_paciente = FormularioPesoPaciente()
-        context = {'form': peso_paciente}
+        # print('Antes de la asignacion',peso_paciente.fields)
+        peso_paciente.dni=request.POST.get('dni')
+        # print('Despues de la asignacion', peso_paciente.dni)
+        # res_paciente = Paciente.objects.filter(dni=paciente).first()
+        res_paciente = PacienteView.getPaciente(dni=paciente)
+        # for rp in res_paciente:
+        #     print(rp.nombre)
+        context = {'form': peso_paciente, 'paciente': res_paciente}
         return render(request, template_registrar_medida, context)
 
+    # def post(request, paciente):
+    #     template_registrar_medida = 'transaccional/registrar_medidas.html'
+    #     peso_paciente  = FormularioPesoPaciente(request.POST)
+    #     peso_paciente.dni=paciente
+    #     # no anda la asignacion del dni
+    #     # print('----> ', peso_paciente.dni)
+    #     if peso_paciente.is_valid():
+    #         peso_paciente.save()
+    #         peso_paciente = FormularioPesoPaciente()
+    #     return render(request=request, template_name=template_registrar_medida, context={'form': peso_paciente, 'mensaje': 'OK'})
+
     def post(request):
-        template_registrar_medida = 'transaccional/registrar_medidas.html'
-        peso_paciente  = FormularioPesoPaciente(request.POST)
-        if peso_paciente.is_valid():
-            peso_paciente.save()
-            peso_paciente = FormularioPesoPaciente()
-        return render(request=request, template_name=template_registrar_medida, context={'form': peso_paciente, 'mensaje': 'OK'})
+        template_registrar_medida = 'transaccional/reg_medidas.html'
+        if request.method == 'POST':
+            medida_paciente = PesoXPaciente(dni=request.POST['dni_paciente'], peso=request.POST['peso_paciente'], estatura=request.POST['estatura_paciente'], fecha_registro=request.POST['fecha_paciente'])
+        # no anda la asignacion del dni
+        # print('----> ', peso_paciente.dni)
+        # if peso_paciente.is_valid():
+            medida_paciente.save()
+        #     peso_paciente = FormularioPesoPaciente()
+            return render(request=request, template_name='base_v2.html')
+        return render(request=request, template_name=template_registrar_medida)
+
